@@ -16,8 +16,8 @@ function AppNavigation() {
           headerShown: false, // Set headerShown to false for all screens
         }}>
         <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="MenuScreen" component={MenuScreen} />
       </Stack.Navigator>

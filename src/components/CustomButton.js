@@ -2,9 +2,9 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
-const CustomButton = ({onPress, title, color, width}) => (
+const CustomButton = ({onPress, title, color, width, marginTop}) => (
   <TouchableOpacity
-    style={[styles.buttonContainer, {backgroundColor: color, width}]}
+    style={[styles.buttonContainer, {backgroundColor: color, width, marginTop}]} // Add marginTop here
     onPress={onPress}>
     <Text style={styles.buttonText}>{title}</Text>
   </TouchableOpacity>

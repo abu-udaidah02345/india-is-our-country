@@ -36,7 +36,7 @@ const onBoardings = [
   },
 ];
 
-const OnBoarding = () => {
+const OnBoarding = ({navigation}) => {
   const [completed, setCompleted] = React.useState(false);
 
   const scrollX = new Animated.Value(0);
@@ -189,8 +189,15 @@ const OnBoarding = () => {
       <View>{renderContent()}</View>
       <View style={styles.dotsRootContainer}>{renderDots()}</View>
       <View style={styles.buttonContainer}>
-        <CustomButton title="Sign In" color="#3F3E3E" width={152} height={58} />
         <CustomButton
+          onPress={() => navigation.navigate('Login')}
+          title="Sign In"
+          color="#3F3E3E"
+          width={152}
+          height={58}
+        />
+        <CustomButton
+          onPress={() => navigation.navigate('Signup')}
           title="Register"
           color="#6E77F6"
           width={164}
