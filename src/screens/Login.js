@@ -39,7 +39,7 @@ export default function Login({navigation}) {
           width={'100%'}
           height={48}
           marginTop={40} // Add marginTop here
-          onPress={() => navigation.navigate('Tabs')}
+          onPress={() => navigation.navigate('MenuScreen')}
         />
         <View
           style={{

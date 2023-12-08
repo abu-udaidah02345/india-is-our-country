@@ -9,91 +9,45 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
+import Slider from './Slider';
 
-const MenuScreen = () => {
+const MenuScreen = ({navigation}) => {
   const data = [
     {key: '1', image: require('../../assets/images/save.png')},
     {key: '2', image: require('../../assets/images/save.png')},
     // Add more items as needed
   ];
 
-  const scrollX = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    Animated.timing(scrollX, {
-      toValue: data.length - 1,
-      duration: 5000, // Set the duration for one cycle (5 seconds in this example)
-      useNativeDriver: false,
-      isInteraction: false,
-    }).start(() => {
-      scrollX.setValue(0);
-    });
-  }, [scrollX, data.length]);
-
-  const renderItem = ({item}) => (
-    <View style={styles.item}>
-      <Image source={item.image} style={styles.image} />
-    </View>
-  );
-
-  const dotPosition = Animated.divide(scrollX, Dimensions.get('window').width);
-
   return (
     <View style={styles.container}>
-      <View style={{marginTop: -10}}>
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={item => item.key}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onScroll={Animated.event(
-            [{nativeEvent: {contentOffset: {x: scrollX}}}],
-            {useNativeDriver: false},
-          )}
-          scrollEventThrottle={16}
-        />
+      <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+        <TouchableOpacity onPress={() => navigation.navigate('Account')}>
+          <Image
+            source={require('../../assets/images/account.png')}
+            style={{
+              tintColor: '#6E77F6',
+              width: 25,
+              height: 25,
+              marginTop: 15,
+              marginRight: 15,
+            }}
+          />
+        </TouchableOpacity>
       </View>
-
-      <View style={styles.dotsContainer}>
-        {data.map((_, index) => {
-          const opacity = dotPosition.interpolate({
-            inputRange: [index - 1, index, index + 1],
-            outputRange: [0.3, 1, 0.3],
-            extrapolate: 'clamp',
-          });
-
-          return (
-            <TouchableOpacity key={index} onPress={() => {}}>
-              <Animated.View style={[styles.dot, {opacity}]} />
-            </TouchableOpacity>
-          );
-        })}
+      <View style={{marginTop: 10}}>
+        <Slider data={data} />
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 18,
+            fontWeight: '800',
+            paddingHorizontal: 18,
+            marginTop: 25,
+            letterSpacing: 1,
+          }}>
+          Understand Our Process
+        </Text>
       </View>
-
-      <Text
-        style={{
-          color: 'white',
-          fontSize: 20,
-          fontWeight: 'bold',
-          paddingHorizontal: 15,
-          marginTop: 20,
-        }}>
-        Understand Our Process
-      </Text>
-      <View
-        style={{
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          backgroundColor: '#6E77F6',
-          elevation: 4,
-          width: '100%',
-          height: '52%',
-          marginTop: 40,
-        }}></View>
-
-      {/* <Text>Understand Our Process</Text> */}
     </View>
   );
 };
