@@ -76,7 +76,7 @@ export default function Signup({navigation}) {
             justifyContent: 'center',
             marginTop: 20,
           }}>
-          <Text style={{marginTop: 15, fontSize: 16, color: '#555353'}}>
+          <Text style={{marginTop: 15, fontSize: 16, color: 'white'}}>
             Already have an account?
           </Text>
           <Text
@@ -98,13 +98,13 @@ export default function Signup({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     paddingHorizontal: 15,
   },
   wrapperHeadingText: {
     marginTop: 30,
 
-    color: '#2E2A2A',
+    color: 'white',
     fontSize: 40,
     fontWeight: 'bold',
   },

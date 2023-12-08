@@ -5,6 +5,8 @@ import Onboarding from '../screens/Onboarding';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
 import Account from '../screens/Account';
+import Video from '../screens/Video';
+import Tabs from './Tabs';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +21,8 @@ function AppNavigation() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Account" component={Account} />
+        <Stack.Screen name="Video" component={Video} />
+        <Stack.Screen name="Tabs" component={Tabs} />
         <Stack.Screen name="MenuScreen" component={MenuScreen} />
       </Stack.Navigator>
     </NavigationContainer>

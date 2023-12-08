@@ -12,6 +12,7 @@ const CustomTextInput = ({
 }) => (
   <View style={styles.container}>
     <TextInput
+      placeholderTextColor="white"
       placeholder={placeholder}
       value={value}
       onChangeText={onChangeText}
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: '#444141',
+    borderColor: 'white',
     borderWidth: 1,
     paddingHorizontal: 10,
     borderRadius: 8,

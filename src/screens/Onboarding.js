@@ -75,16 +75,17 @@ const OnBoarding = ({navigation}) => {
             style={styles.imageAndTextContainer}>
             <View
               style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-              <Image
+              {/* <Image
                 source={item.img}
                 resizeMode="contain"
                 style={{
                   width: '80%',
                   height: '100%',
                   bottom: '3%',
+                  backgroundColor: 'black',
                   //  marginBottom: 100,
                 }}
-              />
+              /> */}
             </View>
             <View
               style={{
@@ -97,7 +98,7 @@ const OnBoarding = ({navigation}) => {
               <Text
                 style={{
                   ...FONTS.h1,
-                  color: COLORS.gray,
+                  color: COLORS.white,
                   textAlign: 'center',
                 }}>
                 {item.title}
@@ -116,7 +117,7 @@ const OnBoarding = ({navigation}) => {
                   ...FONTS.body3,
                   textAlign: 'center',
                   marginTop: SIZES.base,
-                  color: COLORS.gray,
+                  color: COLORS.white,
                 }}>
                 {item.description}
               </Text>
@@ -192,7 +193,7 @@ const OnBoarding = ({navigation}) => {
         <CustomButton
           onPress={() => navigation.navigate('Login')}
           title="Sign In"
-          color="#3F3E3E"
+          color="#2AD699"
           width={152}
           height={58}
         />
@@ -213,7 +214,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.white,
+    backgroundColor: 'black',
   },
   imageAndTextContainer: {
     width: SIZES.width,

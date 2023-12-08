@@ -28,7 +28,7 @@ export default function Login({navigation}) {
           style={styles.textInput}
         />
         <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-          <Text style={{color: '#2C2929', fontSize: 14, fontWeight: '500'}}>
+          <Text style={{color: 'white', fontSize: 14, fontWeight: '500'}}>
             forget password?
           </Text>
         </View>
@@ -39,6 +39,7 @@ export default function Login({navigation}) {
           width={'100%'}
           height={48}
           marginTop={40} // Add marginTop here
+          onPress={() => navigation.navigate('Tabs')}
         />
         <View
           style={{
@@ -46,13 +47,14 @@ export default function Login({navigation}) {
             justifyContent: 'center',
             marginTop: 20,
           }}>
-          <Text style={{marginTop: 15, fontSize: 16, color: '#555353'}}>
+          <Text style={{marginTop: 15, fontSize: 16, color: 'white'}}>
             Don't have an account?
           </Text>
           <Text
             onPress={() => navigation.push('Signup')}
             style={{
               marginTop: 15,
+
               fontSize: 16,
               color: '#6E77F6',
               marginLeft: 4,
@@ -68,13 +70,13 @@ export default function Login({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     paddingHorizontal: 15,
   },
   wrapperHeadingText: {
     marginTop: 30,
 
-    color: '#2E2A2A',
+    color: 'white',
     fontSize: 40,
     fontWeight: 'bold',
   },
