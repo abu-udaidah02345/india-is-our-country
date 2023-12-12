@@ -13,11 +13,18 @@ import {
 } from 'react-native';
 import Slider from './Slider';
 import CustomButton from '../components/CustomButton';
+import BottomSlider from './BottomSlider';
 
 const MenuScreen = ({navigation}) => {
   const data = [
     {key: '1', image: require('../../assets/images/save.png')},
     {key: '2', image: require('../../assets/images/save.png')},
+    // Add more items as needed
+  ];
+
+  const bottomData = [
+    {key: '1', description: 'HI THERE, Assalamu alaikum'},
+    {key: '2', description: 'Hi THERE, means what'},
     // Add more items as needed
   ];
 
@@ -159,7 +166,7 @@ const MenuScreen = ({navigation}) => {
             backgroundColor: '#6E77F6',
             borderTopLeftRadius: 15,
             borderTopRightRadius: 15,
-            height: '80%',
+            // height: '80%',
             marginVertical: 50,
           }}>
           <View style={{paddingHorizontal: 18, marginTop: 25}}>
@@ -213,6 +220,9 @@ const MenuScreen = ({navigation}) => {
               height={70}
               marginTop={24} // Set the marginTop value as needed
             />
+          </View>
+          <View style={{paddingHorizontal: 0, marginTop: 58}}>
+            <BottomSlider data={bottomData} />
           </View>
         </View>
       </View>
