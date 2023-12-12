@@ -91,5 +91,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     height: 48, // Set the width as needed
     marginBottom: 10,
+    color: 'white',
+    fontSize: 18,
+    fontWeight: '500',
   },
 });

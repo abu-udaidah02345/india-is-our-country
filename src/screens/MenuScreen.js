@@ -160,7 +160,7 @@ const MenuScreen = ({navigation}) => {
             borderTopLeftRadius: 15,
             borderTopRightRadius: 15,
             height: '80%',
-            marginTop: 25,
+            marginVertical: 50,
           }}>
           <View style={{paddingHorizontal: 18, marginTop: 25}}>
             <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>
