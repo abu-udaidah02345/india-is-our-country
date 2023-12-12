@@ -40,17 +40,17 @@ const MenuScreen = ({navigation}) => {
         </View>
         <View style={{marginTop: 10}}>
           <Slider data={data} />
-          {/* <Text
-          style={{
-            color: 'white',
-            fontSize: 18,
-            fontWeight: '800',
-            paddingHorizontal: 18,
-            marginTop: 25,
-            letterSpacing: 1,
-          }}>
-          Understand Our Process
-        </Text> */}
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 18,
+              fontWeight: '800',
+              paddingHorizontal: 18,
+              marginTop: 25,
+              letterSpacing: 1,
+            }}>
+            Understand Our Process
+          </Text>
         </View>
         <View
           style={{
@@ -90,15 +90,17 @@ const MenuScreen = ({navigation}) => {
               INR
             </Text>
 
-            {/* <View style={{paddingHorizontal: 18}}> */}
-            <TextInput
-              style={styles.textInput}
-              keyboardType="numeric"
-              placeholder="Enter Amount"
-              placeholderTextColor="white"
-              placeholderStyle={{fontSize: 26}} // Set the placeholder font size
-              maxLength={30}
-            />
+            <>
+              <TextInput
+                style={styles.textInput}
+                keyboardType="numeric"
+                placeholder="Enter Amount"
+                placeholderTextColor="white"
+                placeholderStyle={{fontSize: 26}} // Set the placeholder font size
+                maxLength={30}
+              />
+            </>
+
             {/* </View> */}
           </View>
           <View style={{paddingHorizontal: 18}}>

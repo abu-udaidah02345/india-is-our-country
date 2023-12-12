@@ -4,7 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 export default function Video() {
   return (
     <View style={styles.container}>
-      <Text>Video</Text>
+      <Text style={{color: 'white'}}>Video</Text>
     </View>
   );
 }
