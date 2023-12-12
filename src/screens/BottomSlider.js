@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     //  marginHorizontal:10,
     height: 40,
     borderRadius: 10,
-    marginVertical: 10,
+    //  marginVertical: 10,
     // justifyContent: 'center', // Center text vertically
     // alignItems: 'center', // Center text horizontally
     flexDirection: 'row',
