@@ -51,6 +51,18 @@ const OnBoarding = ({navigation}) => {
     return () => scrollX.removeListener();
   }, []);
 
+  const [splashScreensLoading, setSplashScreensLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    SplashScreen();
+  }, []);
+
+  const SplashScreen = async () => {
+    setTimeout(() => {
+      setSplashScreensLoading(false);
+    }, 1000);
+  };
+
   // Render
 
   function renderContent() {
@@ -187,24 +199,50 @@ const OnBoarding = ({navigation}) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View>{renderContent()}</View>
-      <View style={styles.dotsRootContainer}>{renderDots()}</View>
-      <View style={styles.buttonContainer}>
-        <CustomButton
-          onPress={() => navigation.navigate('Login')}
-          title="Sign In"
-          color="#2AD699"
-          width={152}
-          height={58}
-        />
-        <CustomButton
-          onPress={() => navigation.navigate('Signup')}
-          title="Register"
-          color="#6E77F6"
-          width={164}
-          height={58}
-        />
-      </View>
+      {splashScreensLoading ? (
+        <View style={{alignItems: 'center'}}>
+          <Image
+            source={require('../../assets/images/handshake.png')}
+            style={{
+              width: 150,
+              height: 150,
+              resizeMode: 'contain',
+              tintColor: 'white',
+            }}
+          />
+          {/* Adjust margin or add additional styling as needed */}
+          {/* <Text
+            style={{
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: 20,
+              marginTop: 10,
+            }}>
+            kidmat lil-insania
+          </Text> */}
+        </View>
+      ) : (
+        <>
+          <View>{renderContent()}</View>
+          <View style={styles.dotsRootContainer}>{renderDots()}</View>
+          <View style={styles.buttonContainer}>
+            <CustomButton
+              onPress={() => navigation.navigate('Login')}
+              title="Sign In"
+              color="#2AD699"
+              width={152}
+              height={58}
+            />
+            <CustomButton
+              onPress={() => navigation.navigate('Signup')}
+              title="Register"
+              color="#6E77F6"
+              width={164}
+              height={58}
+            />
+          </View>
+        </>
+      )}
     </SafeAreaView>
   );
 };
