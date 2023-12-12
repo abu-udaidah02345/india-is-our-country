@@ -24,19 +24,46 @@ const MenuScreen = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-        <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-          <TouchableOpacity onPress={() => navigation.navigate('Account')}>
-            <Image
-              source={require('../../assets/images/account.png')}
-              style={{
-                tintColor: '#6E77F6',
-                width: 25,
-                height: 25,
-                marginTop: 15,
-                marginRight: 15,
-              }}
-            />
-          </TouchableOpacity>
+        <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+          <Image
+            source={require('../../assets/images/handshake.png')}
+            style={{
+              tintColor: '#6E77F6',
+              width: 25,
+              height: 22,
+              marginTop: 15,
+              marginLeft: 25,
+              // marginRight: 55,
+            }}
+          />
+
+          <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Notification')}>
+              <Image
+                source={require('../../assets/images/notification.png')}
+                style={{
+                  tintColor: '#6E77F6',
+                  width: 25,
+                  height: 22,
+                  marginTop: 15,
+                  marginLeft: 250,
+                }}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Account')}>
+              <Image
+                source={require('../../assets/images/account.png')}
+                style={{
+                  tintColor: '#6E77F6',
+                  width: 25,
+                  height: 22,
+                  marginTop: 15,
+                  marginLeft: 30,
+                }}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={{marginTop: 10}}>
           <Slider data={data} />
@@ -51,6 +78,80 @@ const MenuScreen = ({navigation}) => {
             }}>
             Understand Our Process
           </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              paddingHorizontal: 24,
+              justifyContent: 'space-between',
+            }}>
+            <View style={{flexDirection: 'column'}}>
+              <Image
+                source={require('../../assets/images/you.jpg')}
+                style={{
+                  width: 50,
+                  height: 50,
+                  marginTop: 30,
+                  backgroundColor: 'black',
+                }}
+              />
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 22,
+                  marginTop: 14,
+                  fontWeight: 'bold',
+                }}>
+                WE
+              </Text>
+              <Text style={styles.wrapperSmallText}>Identify eligible</Text>
+              <Text style={styles.wrapperSmallText1}>beneficiaries</Text>
+            </View>
+            <View style={{flexDirection: 'column'}}>
+              <Image
+                source={require('../../assets/images/you.jpg')}
+                style={{
+                  width: 50,
+                  height: 50,
+                  marginTop: 30,
+                  backgroundColor: 'black',
+                }}
+              />
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 22,
+                  marginTop: 14,
+                  fontWeight: 'bold',
+                }}>
+                YOU
+              </Text>
+              <Text style={styles.wrapperSmallText}>Dedicate Zakat to</Text>
+              <Text style={styles.wrapperSmallText1}>them</Text>
+            </View>
+
+            <View style={{flexDirection: 'column'}}>
+              <Image
+                source={require('../../assets/images/you.jpg')}
+                style={{
+                  width: 50,
+                  height: 50,
+                  marginTop: 30,
+                  backgroundColor: 'black',
+                }}
+              />
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 22,
+                  marginTop: 14,
+                  fontWeight: 'bold',
+                }}>
+                YOU
+              </Text>
+              <Text style={styles.wrapperSmallText}>Distribute</Text>
+              <Text style={styles.wrapperSmallText1}>Zakat</Text>
+            </View>
+          </View>
         </View>
         <View
           style={{
@@ -94,7 +195,7 @@ const MenuScreen = ({navigation}) => {
               <TextInput
                 style={styles.textInput}
                 keyboardType="numeric"
-                placeholder="Enter Amount"
+                //   placeholder="Enter Amount"
                 placeholderTextColor="white"
                 placeholderStyle={{fontSize: 26}} // Set the placeholder font size
                 maxLength={30}
@@ -165,6 +266,17 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     justifyContent: 'center',
+  },
+  wrapperSmallText: {
+    color: 'white',
+    fontSize: 14,
+    marginTop: 5,
+    fontWeight: '500',
+  },
+  wrapperSmallText1: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: '500',
   },
 });
 
