@@ -32,7 +32,12 @@ const MenuScreen = ({navigation}) => {
     <>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.container}>
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              paddingHorizontal: 10,
+            }}>
             <Image
               source={require('../../assets/images/handshake.png')}
               style={{
@@ -40,12 +45,12 @@ const MenuScreen = ({navigation}) => {
                 width: 25,
                 height: 22,
                 marginTop: 15,
-                marginLeft: 25,
+                //marginLeft: 25,
                 // marginRight: 55,
               }}
             />
 
-            <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+            <View style={{alignSelf: 'flex-end', flexDirection: 'row'}}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Notification')}>
                 <Image
@@ -55,23 +60,23 @@ const MenuScreen = ({navigation}) => {
                     width: 25,
                     height: 22,
                     marginTop: 15,
-                    marginLeft: 250,
-                  }}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('Account')}>
-                <Image
-                  source={require('../../assets/images/account.png')}
-                  style={{
-                    tintColor: '#6E77F6',
-                    width: 25,
-                    height: 22,
-                    marginTop: 15,
-                    marginLeft: 30,
+                    left: 120,
                   }}
                 />
               </TouchableOpacity>
             </View>
+            <TouchableOpacity onPress={() => navigation.navigate('Account')}>
+              <Image
+                source={require('../../assets/images/account.png')}
+                style={{
+                  tintColor: '#6E77F6',
+                  width: 25,
+                  height: 22,
+                  marginTop: 15,
+                  marginLeft: 30,
+                }}
+              />
+            </TouchableOpacity>
           </View>
           <View style={{marginTop: 10}}>
             <Slider data={data} />
@@ -189,37 +194,23 @@ const MenuScreen = ({navigation}) => {
                 paddingHorizontal: 18,
                 //    backgroundColor: 'black',
               }}>
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginTop: 10,
-                  color: 'white',
-                  fontWeight: '500',
-                }}>
-                INR
-              </Text>
-
-              <>
-                <TextInput
-                  style={styles.textInput}
-                  keyboardType="numeric"
-                  //   placeholder="Enter Amount"
-                  placeholderTextColor="white"
-                  placeholderStyle={{fontSize: 26}} // Set the placeholder font size
-                  maxLength={30}
-                />
-              </>
-
+              <Text style={styles.currencyText}>INR</Text>
+              <TextInput
+                style={styles.textInput}
+                keyboardType="numeric"
+                placeholder="Enter Amount"
+                placeholderTextColor="white"
+                maxLength={30}
+              />
               {/* </View> */}
             </View>
             <View style={{paddingHorizontal: 18}}>
               <CustomButton
                 onPress={() => navigation.navigate('Signup')}
                 title="CONTRIBUTE"
+                width="98%" // Set the width as a percentage of the parent container
+                // marginTop={-20}
                 color="black"
-                width={380}
-                height={70}
-                marginTop={24} // Set the marginTop value as needed
               />
             </View>
           </View>
@@ -267,14 +258,15 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    borderColor: '#000', // Black border color
+    borderColor: 'white',
     borderBottomWidth: 1,
     width: '83%',
-    marginLeft: 40,
+    marginLeft: 16,
     fontSize: 22,
-
-    color: 'white', // Black text color
+    color: 'white',
+    borderColor: 'black',
   },
+
   scrollContainer: {
     flexGrow: 1,
     justifyContent: 'center',
@@ -288,6 +280,12 @@ const styles = StyleSheet.create({
   wrapperSmallText1: {
     color: 'white',
     fontSize: 14,
+    fontWeight: '500',
+  },
+  currencyText: {
+    fontSize: 18,
+    marginTop: 10,
+    color: 'white',
     fontWeight: '500',
   },
 });

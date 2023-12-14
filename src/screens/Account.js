@@ -29,7 +29,7 @@ export default function Account({navigation}) {
             }}
           />
         </TouchableOpacity>
-
+        {/* 
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Login')}>
           <View
             style={{
@@ -57,6 +57,55 @@ export default function Account({navigation}) {
               Login or Register
             </Text>
           </View>
+        </TouchableWithoutFeedback> */}
+
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate('UpdateProfile')}>
+          <View
+            style={{
+              width: '91%',
+              height: '55%',
+              backgroundColor: 'black',
+              marginVertical: 18,
+              marginHorizontal: 20,
+              borderRadius: 10,
+              elevation: 4,
+              flexDirection: 'row',
+              paddingHorizontal: 10,
+            }}>
+            <Image
+              source={require('../../assets/images/account.png')}
+              style={{
+                width: 40,
+                height: 40,
+                tintColor: '#6E77F6',
+                marginTop: 30,
+                paddingHorizontal: 10,
+              }}
+            />
+            <View style={{flexDirection: 'column'}}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 16,
+                  fontWeight: '500',
+                  marginTop: 32,
+                  paddingHorizontal: 8,
+                }}>
+                Abdur rahim
+              </Text>
+              <Text
+                style={{
+                  //    color: 'white',
+                  fontSize: 10,
+                  fontWeight: '500',
+                  //  marginTop: 35,
+                  paddingHorizontal: 8,
+                }}>
+                Edit Your Profile
+              </Text>
+            </View>
+          </View>
         </TouchableWithoutFeedback>
       </View>
 
@@ -75,11 +124,11 @@ export default function Account({navigation}) {
           style={styles.wrapperText}>
           Notifications
         </Text>
-        <Text
+        {/* <Text
           onPress={() => navigation.navigate('Blog')}
           style={styles.wrapperText}>
           Blog
-        </Text>
+        </Text> */}
 
         <Text
           onPress={() => navigation.navigate('ContactUs')}

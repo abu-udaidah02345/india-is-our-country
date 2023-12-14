@@ -13,6 +13,7 @@ import Notification from '../screens/account/Notification';
 import Settings from '../screens/account/Settings';
 import Blog from '../screens/account/Blog';
 import TransActionHistory from '../screens/account/TransActionHistory';
+import UpdateProfile from '../screens/account/UpdateProfile';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ function AppNavigation() {
         <Stack.Screen name="AboutUs" component={AboutUs} />
         <Stack.Screen name="Notification" component={Notification} />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
         <Stack.Screen name="Blog" component={Blog} />
         <Stack.Screen
           name="TransActionHistory"

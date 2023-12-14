@@ -71,14 +71,13 @@ const Slider = ({data}) => {
       <View style={styles.dotsContainer}>
         {data.map((_, index) => renderDot(index))}
       </View>
-      <View style={{alignSelf: 'center'}}>
+      <View style={{paddingHorizontal: 18}}>
         <CustomButton
           onPress={() => navigation.navigate('Signup')}
           title="DONATE NOW"
           color="#6E77F6"
-          width={380}
-          height={70}
-          marginTop={-20} // Set the marginTop value as needed
+          width="100%" // Set the width as a percentage of the parent container
+          marginTop={-20}
         />
       </View>
     </View>
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 250,
+
     resizeMode: 'cover',
   },
   dotsContainer: {

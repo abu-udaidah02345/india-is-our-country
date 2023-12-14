@@ -102,19 +102,19 @@ const styles = StyleSheet.create({
     width: screenWidth, // Set width to the screen width
     paddingHorizontal: 18,
     backgroundColor: '#6E77F6',
-    elevation: 14,
-    // borderRadius: 10,
-    //backgroundColor: 'skyblue',
+    elevation: 20,
 
-    //  marginHorizontal:10,
     height: 40,
-    // borderTopRightRadius: 25,
-    // borderToLeftRadius: 25,
-    //  marginVertical: 10,
-    // justifyContent: 'center', // Center text vertically
-    // alignItems: 'center', // Center text horizontally
+
     flexDirection: 'row',
     justifyContent: 'space-between',
+    flex: 1,
+
+    elevation: 5, // Add elevation for Android shadow
+    shadowColor: '#000', // iOS shadow color
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
   },
   // ...
 
