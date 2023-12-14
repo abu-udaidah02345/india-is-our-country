@@ -167,7 +167,7 @@ const MenuScreen = ({navigation}) => {
               backgroundColor: '#6E77F6',
               borderTopLeftRadius: 15,
               borderTopRightRadius: 15,
-              // height: '80%',
+              height: '80%',
               marginVertical: 50,
             }}>
             <View style={{paddingHorizontal: 18, marginTop: 25}}>
@@ -225,7 +225,7 @@ const MenuScreen = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
-      <View style={{paddingHorizontal: 0, marginTop: 58}}>
+      <View style={{paddingHorizontal: 0, marginTop: 0}}>
         <BottomSlider data={bottomData} />
       </View>
     </>

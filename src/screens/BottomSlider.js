@@ -66,7 +66,7 @@ const Slider = ({data}) => {
           <View style={styles.slideContainer}>
             <Text
               style={{
-                color: 'black',
+                color: 'white',
                 fontSize: 16,
                 fontWeight: '500',
                 marginTop: 10,
@@ -75,7 +75,7 @@ const Slider = ({data}) => {
             </Text>
             <Text
               style={{
-                color: 'black',
+                color: 'white',
                 fontSize: 16,
                 fontWeight: '500',
                 marginTop: 10,
@@ -94,17 +94,22 @@ const Slider = ({data}) => {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
+    // position: 'relative',
     // paddingHorizontal: 18,
   },
   // ...
   slideContainer: {
     width: screenWidth, // Set width to the screen width
     paddingHorizontal: 18,
-    backgroundColor: 'white',
+    backgroundColor: '#6E77F6',
+    elevation: 14,
+    // borderRadius: 10,
+    //backgroundColor: 'skyblue',
+
     //  marginHorizontal:10,
     height: 40,
-    borderRadius: 10,
+    // borderTopRightRadius: 25,
+    // borderToLeftRadius: 25,
     //  marginVertical: 10,
     // justifyContent: 'center', // Center text vertically
     // alignItems: 'center', // Center text horizontally
