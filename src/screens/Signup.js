@@ -17,83 +17,81 @@ export default function Signup({navigation}) {
     setSelectedCountry(country);
   };
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <Text style={styles.wrapperHeadingText}>Let’s Register Account</Text>
-        {/* <Text style={styles.wrapperText}>Hello user, you have</Text>
+    <View style={styles.container}>
+      <Text style={styles.wrapperHeadingText}>Let’s Register Account</Text>
+      {/* <Text style={styles.wrapperText}>Hello user, you have</Text>
       <Text style={styles.wrapperText}>a great full journey</Text> */}
 
-        <View style={{marginTop: 18}}>
-          <CustomTextInput
-            placeholder="First Name"
-            value={firstName}
-            onChangeText={text => setFirstName(text)}
-            style={styles.textInput}
-          />
-          <CustomTextInput
-            placeholder="Last Name"
-            value={lastName}
-            onChangeText={text => setLastName(text)}
-            style={styles.textInput}
-          />
-          <CustomTextInput
-            placeholder="Email"
-            value={email}
-            onChangeText={text => setEmail(text)}
-            keyboardType="email-address"
-            style={styles.textInput}
-          />
-          <CustomTextInput
-            placeholder="Password"
-            value={password}
-            onChangeText={text => setPassword(text)}
-            secureTextEntry
-            style={styles.textInput}
-          />
-          <CustomTextInput
-            placeholder="Phone No"
-            value={phoneNo}
-            onChangeText={text => setPhoneNo(text)}
-            keyboardType="numeric"
-            style={styles.textInput}
-          />
-          <CustomTextInput
-            placeholder="Country"
-            value={country}
-            onChangeText={text => setCountry(text)}
-            style={styles.textInput}
-          />
+      <View style={{marginTop: 18}}>
+        <CustomTextInput
+          placeholder="First Name"
+          value={firstName}
+          onChangeText={text => setFirstName(text)}
+          style={styles.textInput}
+        />
+        <CustomTextInput
+          placeholder="Last Name"
+          value={lastName}
+          onChangeText={text => setLastName(text)}
+          style={styles.textInput}
+        />
+        <CustomTextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={text => setEmail(text)}
+          keyboardType="email-address"
+          style={styles.textInput}
+        />
+        <CustomTextInput
+          placeholder="Password"
+          value={password}
+          onChangeText={text => setPassword(text)}
+          secureTextEntry
+          style={styles.textInput}
+        />
+        <CustomTextInput
+          placeholder="Phone No"
+          value={phoneNo}
+          onChangeText={text => setPhoneNo(text)}
+          keyboardType="numeric"
+          style={styles.textInput}
+        />
+        <CustomTextInput
+          placeholder="Country"
+          value={country}
+          onChangeText={text => setCountry(text)}
+          style={styles.textInput}
+        />
 
-          <CustomButton
-            title="Sign Up"
-            color="#6E77F6"
-            width={'100%'}
-            height={48}
-            marginTop={40} // Add marginTop here
-          />
-          <View
+        <CustomButton
+          title="Sign Up"
+          color="#6E77F6"
+          width={'100%'}
+          height={48}
+          marginTop={20} // Add marginTop here
+        />
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            marginTop: 2,
+          }}>
+          <Text style={{marginTop: 15, fontSize: 16, color: 'white'}}>
+            Already have an account?
+          </Text>
+          <Text
+            onPress={() => navigation.push('Login')}
             style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              marginTop: 20,
+              marginTop: 15,
+              fontSize: 16,
+              color: '#6E77F6',
+              marginLeft: 4,
             }}>
-            <Text style={{marginTop: 15, fontSize: 16, color: 'white'}}>
-              Already have an account?
-            </Text>
-            <Text
-              onPress={() => navigation.push('Login')}
-              style={{
-                marginTop: 15,
-                fontSize: 16,
-                color: '#6E77F6',
-                marginLeft: 4,
-              }}>
-              Login
-            </Text>
-          </View>
+            Login
+          </Text>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 

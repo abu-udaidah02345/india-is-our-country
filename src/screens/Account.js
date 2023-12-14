@@ -98,6 +98,7 @@ export default function Account({navigation}) {
                 style={{
                   //    color: 'white',
                   fontSize: 10,
+                  color: 'grey',
                   fontWeight: '500',
                   //  marginTop: 35,
                   paddingHorizontal: 8,

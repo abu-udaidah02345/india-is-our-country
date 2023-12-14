@@ -38,7 +38,7 @@ export default function Login({navigation}) {
           color="#6E77F6"
           width={'100%'}
           height={48}
-          marginTop={40} // Add marginTop here
+          marginTop={20} // Add marginTop here
           onPress={() => navigation.navigate('MenuScreen')}
         />
         <View
@@ -47,13 +47,13 @@ export default function Login({navigation}) {
             justifyContent: 'center',
             marginTop: 20,
           }}>
-          <Text style={{marginTop: 15, fontSize: 16, color: 'white'}}>
+          <Text style={{marginTop: 5, fontSize: 16, color: 'white'}}>
             Don't have an account?
           </Text>
           <Text
             onPress={() => navigation.push('Signup')}
             style={{
-              marginTop: 15,
+              marginTop: 5,
 
               fontSize: 16,
               color: '#6E77F6',
