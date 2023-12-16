@@ -1,11 +1,41 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ToastAndroid} from 'react-native';
 import CustomTextInput from '../components/CustomTextInput';
 import CustomButton from '../components/CustomButton';
-
+import {apiGet, apiPost, apiPut, apiDelete} from '../api/api';
 export default function Login({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const callSigninAction = async () => {
+    if (email.trim() === '' || password.trim() === '') {
+      // If any field is empty, show an alert
+      ToastAndroid.showWithGravity(
+        'Please fill in all the fields',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
+    } else {
+      const params = {
+        email: email,
+        password: password,
+      };
+      await signIn(params);
+    }
+  };
+
+  const signIn = async params => {
+    try {
+      // Adjust 'signup' with your actual endpoint
+      const response = await apiPost('signin', params);
+      console.log('Sign Up Response:', response);
+      // Handle the response as needed
+    } catch (error) {
+      console.error('Sign Up Error:', error);
+      // Handle the error as needed
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.wrapperHeadingText}>Let’s sign you in</Text>
@@ -39,7 +69,7 @@ export default function Login({navigation}) {
           width={'100%'}
           height={48}
           marginTop={20} // Add marginTop here
-          onPress={() => navigation.navigate('MenuScreen')}
+          onPress={() => callSigninAction()}
         />
         <View
           style={{

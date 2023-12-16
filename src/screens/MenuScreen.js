@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -14,19 +14,52 @@ import {
 import Slider from './Slider';
 import CustomButton from '../components/CustomButton';
 import BottomSlider from './BottomSlider';
+import {apiGet, apiPost, apiPut, apiDelete} from '../api/api';
 
 const MenuScreen = ({navigation}) => {
-  const data = [
-    {key: '1', image: require('../../assets/images/save.png')},
-    {key: '2', image: require('../../assets/images/save.png')},
-    // Add more items as needed
-  ];
+  const [dashboardData, setDashBoardData] = useState([]);
+  const [BottomdashboardData, setBottomDashboardData] = useState([]);
 
-  const bottomData = [
-    {key: '1', description: 'HI THERE, Assalamu alaikum'},
-    {key: '2', description: 'Hi THERE, means what'},
-    // Add more items as needed
-  ];
+  // const data = [
+  //   {key: '1', image: require('../../assets/images/save.png')},
+  //   {key: '2', image: require('../../assets/images/save.png')},
+  //   // Add more items as needed
+  // ];
+
+  // const bottomData = [
+  //   {key: '1', description: 'HI THERE, Assalamu alaikum'},
+  //   {key: '2', description: 'Hi THERE, means what'},
+  //   // Add more items as needed
+  // ];
+
+  useEffect(() => {
+    getDashboardData();
+    getBottomDashBoardData();
+  }, []);
+
+  const getDashboardData = async () => {
+    try {
+      // Adjust 'signup' with your actual endpoint
+      const response = await apiGet('dashboard');
+      setDashBoardData(response);
+      // Handle the response as needed
+    } catch (error) {
+      console.error('Sign Up Error:', error);
+      // Handle the error as needed
+    }
+  };
+
+  const getBottomDashBoardData = async () => {
+    try {
+      // Adjust 'signup' with your actual endpoint
+      const response = await apiGet('Bottomdashboard');
+      setBottomDashboardData(response);
+      // Handle the response as needed
+    } catch (error) {
+      console.error('Sign Up Error:', error);
+      // Handle the error as needed
+    }
+  };
 
   return (
     <>
@@ -79,7 +112,7 @@ const MenuScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <View style={{marginTop: 10}}>
-            <Slider data={data} />
+            <Slider data={dashboardData} />
             <Text
               style={{
                 color: 'white',
@@ -217,7 +250,7 @@ const MenuScreen = ({navigation}) => {
         </View>
       </ScrollView>
       <View style={{paddingHorizontal: 0, marginTop: 0}}>
-        <BottomSlider data={bottomData} />
+        <BottomSlider data={BottomdashboardData} />
       </View>
     </>
   );

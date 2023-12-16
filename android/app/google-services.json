@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "667522354882",
+    "project_id": "kidmat-41d1f",
+    "storage_bucket": "kidmat-41d1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667522354882:android:cb94ca3418df6265ebb55b",
+        "android_client_info": {
+          "package_name": "com.kidmat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU3XbxWBFBVG_lal5CjzmD7XqO8XQvM_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
