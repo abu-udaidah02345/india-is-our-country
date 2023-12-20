@@ -3,12 +3,16 @@ import {
   View,
   Text,
   StyleSheet,
+  Alert,
   Image,
   TouchableWithoutFeedback,
+  ToastAndroid,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {get} from '../api/Api';
 import {getData} from '../api/AsyncStorage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export default function Account({navigation}) {
   const [userData, setUserData] = useState({});
   const [token, setToken] = useState('');
@@ -27,6 +31,47 @@ export default function Account({navigation}) {
     } catch (error) {
       console.error('API Error:', error.message);
     }
+  };
+
+  const logout = async () => {
+    try {
+      // Clear the user token from AsyncStorage or any other relevant authentication information
+      await AsyncStorage.removeItem('Token');
+      ToastAndroid.showWithGravity(
+        'Successfully Logout',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
+      navigation.navigate('Login');
+
+      // Navigate to the login or onboarding screen
+      // You can use navigation.navigate('Login') or any other navigation logic here
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
+
+  const handleLogout = () => {
+    // Show a confirmation alert
+    Alert.alert(
+      'Logout',
+      'Are you sure you want to logout?',
+      [
+        {
+          text: 'No',
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          onPress: () => {
+            // Call the logout function when the user clicks "Yes"
+            logout();
+          },
+          style: 'destructive', // This makes the text color red (can be adjusted)
+        },
+      ],
+      {cancelable: false},
+    );
   };
 
   return (
@@ -165,6 +210,9 @@ export default function Account({navigation}) {
           onPress={() => navigation.navigate('Settings')}
           style={styles.wrapperText}>
           Settings
+        </Text>
+        <Text onPress={() => handleLogout()} style={styles.wrapperText}>
+          Logout
         </Text>
       </View>
     </View>

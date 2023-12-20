@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import CustomButton from '../components/CustomButton';
-
+import {useNavigation} from '@react-navigation/native';
 const Slider = ({data}) => {
+  const navigation = useNavigation();
   console.log(data, 'data isbtyjere...');
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -65,7 +66,9 @@ const Slider = ({data}) => {
         }}
         renderItem={({item}) => (
           <View style={styles.slideContainer}>
-            <Image source={{uri: item.image}} style={styles.image} />
+            <TouchableOpacity onPress={() => navigation.navigate('Video')}>
+              <Image source={{uri: item.image}} style={styles.image} />
+            </TouchableOpacity>
           </View>
         )}
       />

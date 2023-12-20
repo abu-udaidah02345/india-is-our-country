@@ -30,11 +30,13 @@ export const get = async endpoint => {
 };
 
 export const post = async (endpoint, data) => {
+  const token = await AsyncStorage.getItem('Token');
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token.replace(/^"(.*)"$/, '$1')}`,
       },
       body: JSON.stringify(data),
     });

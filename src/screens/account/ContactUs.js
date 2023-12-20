@@ -1,7 +1,15 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ToastAndroid,
+} from 'react-native';
 import CustomTextInput from '../../components/CustomTextInput';
 import CustomButton from '../../components/CustomButton';
+import {post} from '../../api/Api';
 
 function ContactUs({navigation}) {
   const [firstName, setFirstName] = useState('');
@@ -9,6 +17,51 @@ function ContactUs({navigation}) {
   const [email, setEmail] = useState('');
   const [country, setCountry] = useState('');
   const [messege, setMessege] = useState('');
+
+  const callContactus = async () => {
+    if (
+      firstName.trim() === '' ||
+      lastName.trim() === '' ||
+      email.trim() === '' ||
+      country.trim() === '' ||
+      messege.trim() === ''
+    ) {
+      // If any field is empty, show an alert
+      ToastAndroid.showWithGravity(
+        'Please fill in all the fields',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
+    } else {
+      const params = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        country: country,
+        messege: messege,
+      };
+      await handlePostRequest(params);
+    }
+  };
+
+  const handlePostRequest = params => {
+    // Example of POST request
+
+    post('/messages', params)
+      .then(result => {
+        ToastAndroid.showWithGravity(
+          'Message Received',
+          'Thank you for reaching out! Your message has been received. We will get back to you soon.',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+
+        navigation.navigate('MenuScreen');
+      })
+      .catch(error => {
+        console.error('POST Error:', error);
+      });
+  };
   return (
     <View style={{flex: 1, backgroundColor: 'black'}}>
       <View
@@ -69,8 +122,7 @@ function ContactUs({navigation}) {
         <CustomTextInput
           placeholder="Country"
           value={country}
-          // onChangeText={text => setEmail(text)}
-
+          onChangeText={text => setCountry(text)}
           style={styles.textInput}
         />
         <CustomTextInput
@@ -88,7 +140,7 @@ function ContactUs({navigation}) {
           width={'100%'}
           height={48}
           marginTop={20} // Add marginTop here
-          onPress={() => navigation.navigate('MenuScreen')}
+          onPress={() => callContactus()}
         />
       </View>
     </View>
