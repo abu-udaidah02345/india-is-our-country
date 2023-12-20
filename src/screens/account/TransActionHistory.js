@@ -1,7 +1,21 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import CustomButton from '../../components/CustomButton';
 
 const TransActionHistory = ({navigation}) => {
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    // Call the API when the component mounts
+    getToken();
+  }, []);
+
+  const getToken = async () => {
+    const token = await AsyncStorage.getItem('Token');
+    setToken(token);
+  };
+
   return (
     <View style={styles.container}>
       <View
@@ -40,7 +54,41 @@ const TransActionHistory = ({navigation}) => {
           TransActionHistory
         </Text>
       </View>
-      <Text>TransActionHistory</Text>
+      {token ? (
+        <Text>TransActionHistory</Text>
+      ) : (
+        <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 20,
+              color: 'white',
+              fontWeight: '500',
+            }}>
+            Login or Register
+          </Text>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 12,
+              color: 'white',
+              marginTop: 12,
+            }}>
+            You need to login or register to access
+          </Text>
+          <Text style={{textAlign: 'center', fontSize: 12, color: 'white'}}>
+            your Transaction history
+          </Text>
+          <CustomButton
+            onPress={() => navigation.navigate('Login')}
+            title="LOG IN / REGISTER"
+            color="#6E77F6"
+            width={'90%'}
+            height={48}
+            marginTop={40} // Add marginTop here
+          />
+        </View>
+      )}
     </View>
   );
 };

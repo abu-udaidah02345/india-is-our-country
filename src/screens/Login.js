@@ -97,6 +97,21 @@ export default function Login({navigation}) {
           </Text>
         </View>
       </View>
+      <Text
+        onPress={() => navigation.navigate('MenuScreen')}
+        style={{
+          textAlign: 'center',
+          fontSize: 16,
+          color: 'white',
+          fontWeight: '500',
+          marginTop: 45,
+          //  borderWidth: 1,
+          // borderColor: '#6E77F6',
+          // textDecorationColor: '#6E77F6',
+          // textDecorationLine: 'underline',
+        }}>
+        Enter as a guest
+      </Text>
     </View>
   );
 }
