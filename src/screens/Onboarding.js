@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Animated,
   Image,
@@ -14,6 +14,7 @@ import images from '../components/images';
 import {COLORS, FONTS, SIZES} from '../components/theme';
 import CustomButton from '../components/CustomButton';
 const {onboarding1} = images;
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const onBoardings = [
   {
@@ -37,6 +38,24 @@ const onBoardings = [
 ];
 
 const OnBoarding = ({navigation}) => {
+  useEffect(() => {
+    checkUserLoginStatus();
+  }, []);
+
+  const checkUserLoginStatus = async () => {
+    const token = await AsyncStorage.getItem('Token');
+
+    console.log(token, 'token is there..........');
+
+    // If token is present, user is logged in, navigate to MenuScreen
+    if (token) {
+      console.log('rahim...');
+      navigation.navigate('MenuScreen');
+    } else {
+      // If token is not present, user is not logged in, navigate to Onboarding
+      navigation.navigate('Onboarding');
+    }
+  };
   const [completed, setCompleted] = React.useState(false);
 
   const scrollX = new Animated.Value(0);

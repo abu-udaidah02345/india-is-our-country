@@ -14,53 +14,50 @@ import {
 import Slider from './Slider';
 import CustomButton from '../components/CustomButton';
 import BottomSlider from './BottomSlider';
-import {apiGet, apiPost, apiPut, apiDelete} from '../api/api';
+import {get} from '../api/Api';
 
 const MenuScreen = ({navigation}) => {
   const [dashboardData, setDashBoardData] = useState([]);
   const [BottomdashboardData, setBottomDashboardData] = useState([]);
 
-  // const data = [
-  //   {key: '1', image: require('../../assets/images/save.png')},
-  //   {key: '2', image: require('../../assets/images/save.png')},
-  //   // Add more items as needed
-  // ];
+  const data = [
+    {key: '1', image: require('../../assets/images/save.png')},
+    {key: '2', image: require('../../assets/images/save.png')},
+    // Add more items as needed
+  ];
 
-  // const bottomData = [
-  //   {key: '1', description: 'HI THERE, Assalamu alaikum'},
-  //   {key: '2', description: 'Hi THERE, means what'},
-  //   // Add more items as needed
-  // ];
+  const bottomData = [
+    {key: '1', description: 'HI THERE, Assalamu alaikum'},
+    {key: '2', description: 'Hi THERE, means what'},
+    // Add more items as needed
+  ];
 
   useEffect(() => {
-    getDashboardData();
+    getDashBoardData();
     getBottomDashBoardData();
   }, []);
 
-  const getDashboardData = async () => {
+  const getDashBoardData = async () => {
     try {
-      // Adjust 'signup' with your actual endpoint
-      const response = await apiGet('dashboard');
-      setDashBoardData(response);
-      // Handle the response as needed
+      // Make an API call using the get function
+      const result = await get('/menuItems');
+      setDashBoardData(result);
+      console.log(result, 'resul is there....');
     } catch (error) {
-      console.error('Sign Up Error:', error);
-      // Handle the error as needed
+      console.error('API Error:', error.message);
     }
   };
 
   const getBottomDashBoardData = async () => {
     try {
-      // Adjust 'signup' with your actual endpoint
-      const response = await apiGet('Bottomdashboard');
-      setBottomDashboardData(response);
-      // Handle the response as needed
+      // Make an API call using the get function
+      const result = await get('/get-content');
+      setBottomDashboardData(result);
+      console.log(result, 'resul is there....');
     } catch (error) {
-      console.error('Sign Up Error:', error);
-      // Handle the error as needed
+      console.error('API Error:', error.message);
     }
   };
-
   return (
     <>
       <ScrollView contentContainerStyle={styles.scrollContainer}>

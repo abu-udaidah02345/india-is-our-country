@@ -1,64 +1,71 @@
 // api.js
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const BASE_URL = 'http://192.168.0.129:3000/api/users';
 
-const API_BASE_URL = 'https://api.example.com'; // Replace with your API base URL
-
-const handleResponse = response => {
+const handleResponse = async response => {
   if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    const error = await response.json();
+    throw new Error(error.message || 'Something went wrong');
   }
   return response.json();
 };
 
-export const apiGet = async endpoint => {
-  const url = `${API_BASE_URL}/${endpoint}`;
-  const response = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      // Add any additional headers here
-    },
-  });
+export const get = async endpoint => {
+  const token = await AsyncStorage.getItem('Token');
+  console.log(token, 'token is there');
 
-  return handleResponse(response);
+  try {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token.replace(/^"(.*)"$/, '$1')}`,
+      },
+    });
+
+    return handleResponse(response);
+  } catch (error) {
+    throw new Error(error.message || 'Network error');
+  }
 };
 
-export const apiPost = async (endpoint, data) => {
-  const url = `${API_BASE_URL}/${endpoint}`;
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      // Add any additional headers here
-    },
-    body: JSON.stringify(data),
-  });
-
-  return handleResponse(response);
+export const post = async (endpoint, data) => {
+  try {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return handleResponse(response);
+  } catch (error) {
+    throw new Error(error.message || 'Network error');
+  }
 };
 
-export const apiPut = async (endpoint, data) => {
-  const url = `${API_BASE_URL}/${endpoint}`;
-  const response = await fetch(url, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      // Add any additional headers here
-    },
-    body: JSON.stringify(data),
-  });
-
-  return handleResponse(response);
+export const put = async (endpoint, data) => {
+  try {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return handleResponse(response);
+  } catch (error) {
+    throw new Error(error.message || 'Network error');
+  }
 };
 
-export const apiDelete = async endpoint => {
-  const url = `${API_BASE_URL}/${endpoint}`;
-  const response = await fetch(url, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      // Add any additional headers here
-    },
-  });
-
-  return handleResponse(response);
+export const del = async endpoint => {
+  try {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      method: 'DELETE',
+    });
+    return handleResponse(response);
+  } catch (error) {
+    throw new Error(error.message || 'Network error');
+  }
 };

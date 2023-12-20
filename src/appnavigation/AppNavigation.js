@@ -14,10 +14,12 @@ import Settings from '../screens/account/Settings';
 import Blog from '../screens/account/Blog';
 import TransActionHistory from '../screens/account/TransActionHistory';
 import UpdateProfile from '../screens/account/UpdateProfile';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useEffect} from 'react';
 
 const Stack = createStackNavigator();
 
-function AppNavigation() {
+function AppNavigation({navigation}) {
   return (
     <NavigationContainer>
       <Stack.Navigator

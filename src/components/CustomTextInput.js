@@ -9,19 +9,21 @@ const CustomTextInput = ({
   secureTextEntry,
   keyboardType,
   style,
-}) => (
-  <View style={styles.container}>
-    <TextInput
-      placeholderTextColor="white"
-      placeholder={placeholder}
-      value={value}
-      onChangeText={onChangeText}
-      secureTextEntry={secureTextEntry}
-      keyboardType={keyboardType}
-      style={[styles.input, style]}
-    />
-  </View>
-);
+}) => {
+  return (
+    <View style={styles.container}>
+      <TextInput
+        placeholderTextColor="white"
+        placeholder={placeholder}
+        value={value}
+        onChangeText={onChangeText}
+        secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
+        style={[styles.input, style]}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -10,6 +10,7 @@ import {
 import CustomButton from '../components/CustomButton';
 
 const Slider = ({data}) => {
+  console.log(data, 'data isbtyjere...');
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const screenWidth = Dimensions.get('window').width;
@@ -64,7 +65,7 @@ const Slider = ({data}) => {
         }}
         renderItem={({item}) => (
           <View style={styles.slideContainer}>
-            <Image source={item.image} style={styles.image} />
+            <Image source={{uri: item.image}} style={styles.image} />
           </View>
         )}
       />
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
+    height: 200,
 
     resizeMode: 'cover',
   },

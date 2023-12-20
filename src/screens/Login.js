@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, ToastAndroid} from 'react-native';
 import CustomTextInput from '../components/CustomTextInput';
 import CustomButton from '../components/CustomButton';
-import {apiGet, apiPost, apiPut, apiDelete} from '../api/api';
+import {storeData, getData, removeData} from '../api/AsyncStorage';
+import {post} from '../api/Api';
 export default function Login({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,22 +26,25 @@ export default function Login({navigation}) {
   };
 
   const signIn = async params => {
-    try {
-      // Adjust 'signup' with your actual endpoint
-      const response = await apiPost('signin', params);
-      console.log('Sign Up Response:', response);
-      // Handle the response as needed
-    } catch (error) {
-      console.error('Sign Up Error:', error);
-      // Handle the error as needed
-    }
+    post('/login', params)
+      .then(result => {
+        ToastAndroid.showWithGravity(
+          'Successfully Login',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+
+        storeData('Token', result.token);
+        navigation.navigate('MenuScreen');
+      })
+      .catch(error => {
+        console.error('POST Error:', error);
+      });
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.wrapperHeadingText}>Let’s sign you in</Text>
-      {/* <Text style={styles.wrapperText}>Welcome Back,</Text>
-      <Text style={styles.wrapperText}>You have been missed,</Text> */}
 
       <View style={{marginTop: 18}}>
         <CustomTextInput

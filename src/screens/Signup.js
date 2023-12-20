@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, ScrollView, ToastAndroid} from 'react-native';
 import CustomTextInput from '../components/CustomTextInput';
 import CustomButton from '../components/CustomButton';
 
-import {apiGet, apiPost, apiPut, apiDelete} from '../api/api';
+import {post, del, put, get} from '../api/Api';
 
 export default function Signup({navigation}) {
   const [firstName, setFirstName] = useState('');
@@ -40,30 +40,33 @@ export default function Signup({navigation}) {
         lastName: lastName,
         email: email,
         password: password,
-        phoneNo: phoneNo,
+        phoneNumber: phoneNo,
         country: country,
       };
-      await signUp(params);
+      await handlePostRequest(params);
     }
   };
 
-  const signUp = async params => {
-    try {
-      // Adjust 'signup' with your actual endpoint
-      const response = await apiPost('signup', params);
-      console.log('Sign Up Response:', response);
-      // Handle the response as needed
-    } catch (error) {
-      console.error('Sign Up Error:', error);
-      // Handle the error as needed
-    }
+  const handlePostRequest = params => {
+    // Example of POST request
+
+    post('/register', params)
+      .then(result => {
+        ToastAndroid.showWithGravity(
+          'Successfully Registered',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+        navigation.navigate('Login');
+      })
+      .catch(error => {
+        console.error('POST Error:', error);
+      });
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.wrapperHeadingText}>Let’s Register Account</Text>
-      {/* <Text style={styles.wrapperText}>Hello user, you have</Text>
-      <Text style={styles.wrapperText}>a great full journey</Text> */}
 
       <View style={{marginTop: 18}}>
         <CustomTextInput

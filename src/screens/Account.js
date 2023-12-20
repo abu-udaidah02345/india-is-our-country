@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,8 +7,28 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-
+import {get} from '../api/Api';
+import {getData} from '../api/AsyncStorage';
 export default function Account({navigation}) {
+  const [userData, setUserData] = useState({});
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    // Call the API when the component mounts
+
+    getUserData();
+  }, []);
+
+  const getUserData = async () => {
+    try {
+      // Make an API call using the get function
+      const result = await get('/getuser');
+      setUserData(result);
+    } catch (error) {
+      console.error('API Error:', error.message);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View
