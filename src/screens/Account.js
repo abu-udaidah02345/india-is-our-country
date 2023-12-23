@@ -199,11 +199,11 @@ export default function Account({navigation}) {
           style={styles.wrapperText}>
           Notifications
         </Text>
-        {/* <Text
+        <Text
           onPress={() => navigation.navigate('Blog')}
           style={styles.wrapperText}>
           Blog
-        </Text> */}
+        </Text>
 
         <Text
           onPress={() => navigation.navigate('ContactUs')}

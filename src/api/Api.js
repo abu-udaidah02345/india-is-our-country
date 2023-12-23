@@ -5,11 +5,11 @@ const BASE_URL = 'http://192.168.0.129:3000/api/users';
 const handleResponse = async response => {
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.message || 'Something went wrong');
+    console.error('API Error:', error.error); // Log the error message
+    throw new Error(error.error || 'Something went wrong');
   }
   return response.json();
 };
-
 export const get = async endpoint => {
   const token = await AsyncStorage.getItem('Token');
   console.log(token, 'token is there');
@@ -19,7 +19,7 @@ export const get = async endpoint => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token.replace(/^"(.*)"$/, '$1')}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 

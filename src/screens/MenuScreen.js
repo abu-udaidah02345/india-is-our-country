@@ -3,6 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
+  BackHandler,
   TextInput,
   Animated,
   Image,
@@ -35,8 +36,23 @@ const MenuScreen = ({navigation}) => {
   useEffect(() => {
     getDashBoardData();
     getBottomDashBoardData();
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      handleBackPress,
+    );
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      backHandler.remove();
+    };
   }, []);
 
+  const handleBackPress = () => {
+    // Exit the app when the back button is pressed
+    BackHandler.exitApp();
+    return true; // Returning true prevents the default behavior (going back)
+  };
   const getDashBoardData = async () => {
     try {
       // Make an API call using the get function

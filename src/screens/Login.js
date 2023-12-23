@@ -33,12 +33,17 @@ export default function Login({navigation}) {
           ToastAndroid.SHORT,
           ToastAndroid.CENTER,
         );
+        console.log(result, 'result is there...');
 
         storeData('Token', result.token);
         navigation.navigate('MenuScreen');
       })
       .catch(error => {
-        console.error('POST Error:', error);
+        ToastAndroid.showWithGravity(
+          'Invalid email or password',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
       });
   };
 
