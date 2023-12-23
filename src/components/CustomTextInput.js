@@ -9,6 +9,7 @@ const CustomTextInput = ({
   secureTextEntry,
   keyboardType,
   style,
+  defaultValue,
 }) => {
   return (
     <View style={styles.container}>
@@ -18,6 +19,7 @@ const CustomTextInput = ({
         value={value}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
+        defaultValue={defaultValue}
         keyboardType={keyboardType}
         style={[styles.input, style]}
       />

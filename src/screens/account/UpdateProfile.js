@@ -1,22 +1,73 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   StyleSheet,
   Image,
   TouchableOpacity,
+  ToastAndroid,
   ScrollView,
 } from 'react-native';
 import CustomTextInput from '../../components/CustomTextInput';
 import CustomButton from '../../components/CustomButton';
+import {useRoute, CommonActions} from '@react-navigation/native';
+import {put} from '../../api/Api';
 
 const UpdateProfile = ({navigation}) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phoneNo, setPhoneNo] = useState('');
-  const [country, setCountry] = useState('');
+  const route = useRoute();
+
+  const userData = route.params?.userData;
+
+  console.log(userData, 'userData is there....');
+
+  const [firstName, setFirstName] = useState(userData?.firstName || '');
+  const [lastName, setLastName] = useState(userData?.lastName || '');
+  const [email, setEmail] = useState(userData?.email || '');
+
+  const [phoneNo, setPhoneNo] = useState(userData?.phoneNumber || '');
+  const [country, setCountry] = useState(userData?.country || '');
+  const [isSaveButtonEnabled, setSaveButtonEnabled] = useState(false);
+
+  useEffect(() => {
+    // Set the initial state based on user data
+    setFirstName(userData?.firstName || '');
+    setLastName(userData?.lastName || '');
+    setEmail(userData?.email || '');
+    setPhoneNo(userData?.phoneNumber || '');
+    setCountry(userData?.country || '');
+  }, [userData]); // Run this effect whenever userData changes
+
+  // useEffect to check whether any field has been updated
+  useEffect(() => {
+    const isAnyFieldUpdated =
+      firstName !== userData.firstName ||
+      lastName !== userData.lastName ||
+      email !== userData.email ||
+      phoneNo !== userData.phoneNumber ||
+      country !== userData.country;
+
+    setSaveButtonEnabled(isAnyFieldUpdated);
+  }, [firstName, lastName, email, phoneNo, country, userData]);
+
+  const updateProfile = () => {
+    const params = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phoneNumber: phoneNo,
+      country: country,
+    };
+    put('/update', params)
+      .then(result => {
+        ToastAndroid.showWithGravity(
+          'Update Profile Successfully',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+        navigation.navigate('Account');
+      })
+      .catch(error => {});
+  };
 
   const [selectedCountry, setSelectedCountry] = useState(null);
   return (
@@ -58,58 +109,56 @@ const UpdateProfile = ({navigation}) => {
         </Text>
       </View>
       <ScrollView>
-        <Text style={styles.wrapperHeadingText}>Personal Information</Text>
-        {/* <Text style={styles.wrapperText}>Hello user, you have</Text>
+        <View style={{paddingHorizontal: 15}}>
+          <Text style={styles.wrapperHeadingText}>Personal Information</Text>
+          {/* <Text style={styles.wrapperText}>Hello user, you have</Text>
       <Text style={styles.wrapperText}>a great full journey</Text> */}
 
-        <View style={{marginTop: 18}}>
-          <CustomTextInput
-            placeholder="First Name"
-            value={firstName}
-            onChangeText={text => setFirstName(text)}
-            style={styles.textInput}
-          />
-          <CustomTextInput
-            placeholder="Last Name"
-            value={lastName}
-            onChangeText={text => setLastName(text)}
-            style={styles.textInput}
-          />
-          <CustomTextInput
-            placeholder="Email"
-            value={email}
-            onChangeText={text => setEmail(text)}
-            keyboardType="email-address"
-            style={styles.textInput}
-          />
-          <CustomTextInput
-            placeholder="Password"
-            value={password}
-            onChangeText={text => setPassword(text)}
-            secureTextEntry
-            style={styles.textInput}
-          />
-          <CustomTextInput
-            placeholder="Phone No"
-            value={phoneNo}
-            onChangeText={text => setPhoneNo(text)}
-            keyboardType="numeric"
-            style={styles.textInput}
-          />
-          <CustomTextInput
-            placeholder="Country"
-            value={country}
-            onChangeText={text => setCountry(text)}
-            style={styles.textInput}
-          />
+          <View style={{marginTop: 18}}>
+            <CustomTextInput
+              placeholder="First Name"
+              value={firstName}
+              onChangeText={text => setFirstName(text)}
+              style={styles.textInput}
+            />
+            <CustomTextInput
+              placeholder="Last Name"
+              value={lastName}
+              onChangeText={text => setLastName(text)}
+              style={styles.textInput}
+            />
+            <CustomTextInput
+              placeholder="Email"
+              value={email}
+              onChangeText={text => setEmail(text)}
+              keyboardType="email-address"
+              style={styles.textInput}
+            />
 
-          <CustomButton
-            title="Sign Up"
-            color="#6E77F6"
-            width={'100%'}
-            height={48}
-            marginTop={40} // Add marginTop here
-          />
+            <CustomTextInput
+              placeholder="Phone No"
+              value={phoneNo}
+              onChangeText={text => setPhoneNo(text)}
+              keyboardType="numeric"
+              style={styles.textInput}
+            />
+            <CustomTextInput
+              placeholder="Country"
+              value={country}
+              onChangeText={text => setCountry(text)}
+              style={styles.textInput}
+            />
+
+            <CustomButton
+              onPress={() => updateProfile()}
+              title="Save"
+              color="#6E77F6"
+              width={'100%'}
+              height={48}
+              marginTop={40}
+              disabled={!isSaveButtonEnabled}
+            />
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -120,7 +169,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
-    paddingHorizontal: 15,
+    //  paddingHorizontal: 15,
   },
   wrapperHeadingText: {
     marginTop: 30,

@@ -12,17 +12,22 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {get} from '../api/Api';
 import {getData} from '../api/AsyncStorage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useIsFocused} from '@react-navigation/native';
 
 export default function Account({navigation}) {
   const [userData, setUserData] = useState({});
 
   const [token, setToken] = useState('');
 
+  const isFocused = useIsFocused();
+
   useEffect(() => {
     // Call the API when the component mounts
     getToken();
-    getUserData();
-  }, []);
+    if (isFocused) {
+      getUserData();
+    }
+  }, [isFocused]);
 
   const getToken = async () => {
     const token = await AsyncStorage.getItem('Token');
@@ -33,6 +38,7 @@ export default function Account({navigation}) {
     try {
       // Make an API call using the get function
       const result = await get('/getuser');
+
       setUserData(result);
     } catch (error) {
       console.error('API Error:', error.message);
@@ -103,7 +109,11 @@ export default function Account({navigation}) {
 
         {token ? (
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('UpdateProfile')}>
+            onPress={() =>
+              navigation.navigate('UpdateProfile', {
+                userData: userData,
+              })
+            }>
             <View
               style={{
                 width: '91%',
@@ -135,7 +145,7 @@ export default function Account({navigation}) {
                     marginTop: 32,
                     paddingHorizontal: 8,
                   }}>
-                  Abdur rahim
+                  {userData.firstName} {userData.lastName}
                 </Text>
                 <Text
                   style={{

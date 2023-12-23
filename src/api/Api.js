@@ -19,7 +19,7 @@ export const get = async endpoint => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: JSON.parse(token),
       },
     });
 
@@ -45,11 +45,13 @@ export const post = async (endpoint, data) => {
 };
 
 export const put = async (endpoint, data) => {
+  const token = await AsyncStorage.getItem('Token');
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: JSON.parse(token),
       },
       body: JSON.stringify(data),
     });
