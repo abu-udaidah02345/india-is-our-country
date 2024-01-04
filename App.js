@@ -9,8 +9,10 @@ const {width, height} = Dimensions.get('window');
 
 export default function App() {
   return (
-    // <Provider store={Store}>
-    <AppNavigation />
+    <>
+      <Text>asasas</Text>
+      <AppNavigation />
+    </>
     // </Provider>
   );
 }
