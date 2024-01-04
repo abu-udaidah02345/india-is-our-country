@@ -86,7 +86,7 @@ function ContactUs({navigation}) {
             }}
           />
         </TouchableOpacity>
-        <Text>asasas</Text>
+
         <Text
           style={{
             color: 'white',
